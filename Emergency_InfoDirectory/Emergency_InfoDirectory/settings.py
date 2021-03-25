@@ -37,8 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+<<<<<<< HEAD
     'user',
     'crispy_forms'
+=======
+    'bazar.apps.BazarConfig',
+    'fire_station.apps.FireStationConfig',
+>>>>>>> 94363962121c29ba67cc4a635366b7cfddce0c17
 ]
 
 MIDDLEWARE = [
