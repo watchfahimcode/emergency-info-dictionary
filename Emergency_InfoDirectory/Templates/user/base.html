@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        {% load static %} 
+        <link rel="stylesheet" href="{% static 'user/style.css' %}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        
+
+        <title>
+            {% block title %}
+     
+             {% endblock %}
+         </title>
+    </head>
+
+    <body>
+
+        <div class="topnav" id="myTopnav">
+            <a href="{% url 'home' %}">Home</a>
+            <a href="{% url 'user-profile' %}">Profile</a>
+            <a href="{% url 'user-registration' %}">Register</a>
+            <a href="{% url 'login' %}">Log In</a>
+            <a href="{% url 'logout' %}">Log Out</a>
+            
+                <div class="dropdown">
+                    <button class="dropbtn">Dropdown
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                    <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                    </div>
+                </div> 
+
+            <input type="text" placeholder="Search..">
+            <a href="javascript:void(0);" style="font-size:15px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
+
+
+        <script>
+        function myFunction() {
+        var x = document.getElementById("myTopnav");
+        if (x.className === "topnav") {
+            x.className += " responsive";
+        } else {
+            x.className = "topnav";
+        }
+        }
+        </script>
+
+        <div>
+            {% block content %}
+    
+            {% endblock %}
+        </div>
+
+    </body>
+</html>
