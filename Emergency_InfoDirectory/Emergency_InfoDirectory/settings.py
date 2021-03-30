@@ -39,6 +39,17 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bazar.apps.BazarConfig',
     'fire_station.apps.FireStationConfig',
+    'Doctor.apps.DoctorConfig',
+    'Hotel.apps.HotelConfig',
+    'Hospital.apps.HospitalConfig',
+    'District_council.apps.DistrictCouncilConfig',
+    'District_administration.apps.DistrictAdministrationConfig',
+    'Divisional_administration.apps.DivisionalAdministrationConfig',
+    'Municipality.apps.MunicipalityConfig',
+    'Police_station.apps.PoliceStationConfig',
+    'Subdistrict_administration.apps.SubdistrictAdministrationConfig',
+    'Subdistrict_counil.apps.SubdistrictCounilConfig',
+    'Union_council.apps.UnionCouncilConfig',
 ]
 
 MIDDLEWARE = [
