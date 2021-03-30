@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Subdistrict_counil',
+            name='Subdistrict_council',
             fields=[
                 ('id', models.IntegerField(db_column='id', primary_key=True, serialize=False)),
                 ('name', models.CharField(db_column='name', max_length=30)),
