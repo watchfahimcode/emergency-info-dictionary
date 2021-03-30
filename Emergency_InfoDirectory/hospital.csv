@@ -1,0 +1,8 @@
+hospital_id,name,category,address,contact_no,subdistrict,district,division
+1,Rangpur Heart Hospital ,Cardiology Hospital,Rangpur Thana Mor,1222000000,Rangpur,Rangpur,Rangpur
+2,Lab Aid Rangpur,GeneralHospital,Rangpur Khamar para mor,1725254369,Rangpur,Rangpur,Rangpur
+3,Momota Memorial Hospital,Eye Hospital,Lalmonirhat Sadar,1742026589,Lalmonirhat ,Lalmonirhat ,Rangpur
+4,Central Child Hospital,Child Hospital,Kurigram station Mor,1745369258,Kurigram,Kurigram,Rangpur
+5,Popular Lalmonirhat,General Hospital,Lalmonirhat Station Mor,1745369258,Lalmonirhat,Lalmonirhat,Rangpur
+6,Update Hospital,General Hospital,Pirganj Bazar,172325653,Pirganj,Rangpur,Rangpur
+7,Care Hospital,General Hospital,Burimari Bazar,1725369256,Burimari,Lalmonirhat,Rangpur
