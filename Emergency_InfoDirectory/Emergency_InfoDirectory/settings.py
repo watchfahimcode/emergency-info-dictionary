@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'Municipality.apps.MunicipalityConfig',
     'Police_station.apps.PoliceStationConfig',
     'Subdistrict_administration.apps.SubdistrictAdministrationConfig',
-    'Subdistrict_counil.apps.SubdistrictCounilConfig',
+    'Subdistrict_council.apps.SubdistrictCounilConfig',
     'Union_council.apps.UnionCouncilConfig',
 ]
 
