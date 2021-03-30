@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-import os
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,11 +37,19 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
-    'crispy_forms',
     'bazar.apps.BazarConfig',
     'fire_station.apps.FireStationConfig',
-
+    'Doctor.apps.DoctorConfig',
+    'Hotel.apps.HotelConfig',
+    'Hospital.apps.HospitalConfig',
+    'District_council.apps.DistrictCouncilConfig',
+    'District_administration.apps.DistrictAdministrationConfig',
+    'Divisional_administration.apps.DivisionalAdministrationConfig',
+    'Municipality.apps.MunicipalityConfig',
+    'Police_station.apps.PoliceStationConfig',
+    'Subdistrict_administration.apps.SubdistrictAdministrationConfig',
+    'Subdistrict_counil.apps.SubdistrictCounilConfig',
+    'Union_council.apps.UnionCouncilConfig',
 ]
 
 MIDDLEWARE = [
@@ -124,12 +132,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-STATICFILES_DIRS = [
-    "/user/static",
-
-]
-
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
-
-LOGIN_REDIRECT_URL = 'home'
