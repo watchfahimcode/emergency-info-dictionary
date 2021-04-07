@@ -1,13 +1,17 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import get_user, authenticate, login
 
+@login_required()
 def home(request):
     context = {
         'content' : "This is home"
     }
     return render(request,'user/home.html',context)
 
+@login_required
 def profile(request):
     context =  {
         'name' : "Fahim",
@@ -20,7 +24,14 @@ def register(request):
         registration_form = UserRegistrationForm(request.POST)
         if registration_form.is_valid():
             registration_form.save()
-            return redirect('user-profile')
+
+            #autologin...
+            username = registration_form.cleaned_data.get('username')
+            password = registration_form.cleaned_data.get('password1')
+            new_user = authenticate(username=username,password=password)
+            login(request,new_user)
+
+        return redirect('home')
     else:
         registration_form = UserRegistrationForm
 
