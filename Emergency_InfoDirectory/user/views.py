@@ -2,6 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm
 
+def home(request):
+    context = {
+        'content' : "This is home"
+    }
+    return render(request,'user/home.html',context)
+
 def profile(request):
     context =  {
         'name' : "Fahim",
