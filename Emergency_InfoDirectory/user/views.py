@@ -6,6 +6,12 @@ from django.urls import reverse_lazy
 
 from .forms import UserRegistrationForm,UserUpdateForm,ProfileUpdateForm
 from .models import Profile
+def home(request):
+    context = {
+        'content' : "This is home"
+    }
+    return render(request,'user/home.html',context)
+
 def profile(request):
     context = {
         # 'name' : "Fahim",
@@ -16,7 +22,7 @@ def profile(request):
 def register(request):
     if request.method == "POST":
         registration_form = UserRegistrationForm(request.POST)
-        if registration_form.is_valid():
+        if(registration_form.is_valid()):
             registration_form.save()
             # profile = Profile(user=request.user)
             # profile.save()
@@ -24,7 +30,7 @@ def register(request):
 
 
     else:
-        registration_form = UserRegistrationForm
+        registration_form = UserRegistrationForm()
 
         context = {
 
@@ -42,6 +48,8 @@ def profile_update(request):
             user_update_form.save()
             profile_update_form.save()
             return redirect('user-profile')
+
+
         else:
             context = {
                     'user_update_form': user_update_form,

@@ -7,13 +7,20 @@
 
 {% load crispy_forms_tags %}
 {% block content %}
-    <div style="padding-left:25%; padding-right: 25%; padding-top: 5%">
-<img style="height: 170px;width: 170px;"class=""
+    <div style="padding-left:42%; padding-right: 40%; padding-top: 10%">
+<img style="height: 170px;width: 170px;"class="rounded"
      src="{{ user.profile.profile_picture.url }}"
      alt="{{ user.profile.profile_picture.url }}">
     </br>
         Name:
-    {{ user.username }}
+    {{ user.first_name }}
+        {{ user.last_name }}
+        </br>
+        First Name:
+        {{ user.first_name }}
+        </br>
+        Last Name:
+        {{ user.last_name }}
     </br>
         Email:
     {{ user.email }}
