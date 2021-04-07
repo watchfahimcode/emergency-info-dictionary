@@ -2,10 +2,24 @@
 
 {% block title %}
     Profile
+
 {% endblock %}
 
+{% load crispy_forms_tags %}
 {% block content %}
-    {% load static %}
+    <div style="padding-left:25%; padding-right: 25%; padding-top: 5%">
+<img style="height: 170px;width: 170px;"class=""
+     src="{{ user.profile.profile_picture.url }}"
+     alt="{{ user.profile.profile_picture.url }}">
+    </br>
+        Name:
+    {{ user.username }}
+    </br>
+        Email:
+    {{ user.email }}
 
-    Name- {{ name }}
+
+
+    </div>
+
 {% endblock %}

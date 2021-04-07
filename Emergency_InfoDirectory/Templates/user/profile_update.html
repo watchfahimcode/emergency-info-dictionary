@@ -1,0 +1,31 @@
+{% extends 'user/base.html'%}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Profile Update
+
+{% endblock %}
+
+
+{% block content %}
+     <div style="padding-left:25%; padding-right: 25%; padding-top: 5%">
+    <img style="height: 50px;width: 50px;"class="rounded-circle"
+     src="{{ user.profile.profile_picture.url }}"
+     alt="{{ user.profile.profile_picture.url }}">
+    {{ user.username }}
+
+    <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ user_update_form | crispy  }}
+                {{ profile_update_form | crispy   }}
+            </fieldset>
+            <div class ="submit">
+            <button class="submit form-group btn btn-outline-info">
+                Submit!
+            </button>
+            </div>
+        </form>
+     </div>
+
+{% endblock %}
