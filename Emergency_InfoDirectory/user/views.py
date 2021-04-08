@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
-from .forms import UserRegistrationForm
+from .forms import UserRegistrationForm, UserDetailsForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import get_user, authenticate, login
 
@@ -13,11 +13,28 @@ def home(request):
 
 @login_required
 def profile(request):
-    context =  {
-        'name' : "Fahim",
-        'email' : "fahimrahman@uap.gmail.com",
-    }
-    return render(request,'user/profile.html',context)
+    if(request.method == 'POST'):
+        form=UserDetailsForm(request.POST)
+        dict = request.POST
+        error_fname = ''
+        if dict ['fname']!='' :
+            print(dict['fname'])
+        else:
+            error_fname='First Name is Required!'
+            return render(request, 'user/profile.html',
+                          { 'form': form,'error_fname':error_fname } )
+
+
+
+        print(dict['lname'])
+        print(dict['gender'])
+        print(dict['division'])
+
+        return redirect('home')
+
+    userDetailsForm = UserDetailsForm()
+
+    return render(request,'user/profile.html',{ 'form': userDetailsForm})
 
 def register(request):
     if request.method == "POST":
