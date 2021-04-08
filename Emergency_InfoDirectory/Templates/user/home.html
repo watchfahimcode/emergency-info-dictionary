@@ -1,12 +1,28 @@
-{% extends 'user/base.html'%}
+{% extends 'user/base.html' %}          <!-- updated home search form -->
+
+{% load crispy_forms_tags %}
 
 {% block title %}
-    Home
+    Emergency Information Dictionary
 {% endblock %}
+{% block style %}
 
-{% block content %}
-    {% load static %}
+{% endblock %}
+{% block content %}         <!-- updated home with search search form -->
 
-    {{ content }}
+    <div style="padding-left:25%; padding-right: 25%; padding-top: 10%; background-color: #ffffff; padding-bottom: 10%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
+        <h1>Emergency Information Dictionary</h1>
+        <hr>
+        <br>
+        <form method="POST" id=search-form>
+            {% csrf_token %}
+            <fieldset class="form-group">
+                {{ search_forms | crispy}}
+            </fieldset>
+            <button class="submit form-group btn btn-outline-info">
+                Search
+            </button>
+        </form>
+    </div>
 
 {% endblock %}

@@ -15,10 +15,14 @@
             {% block title %}
      
              {% endblock %}
-         </title>
+        </title>
+        <style>
+            {% block style %}
+            {% endblock %}
+        </style>
     </head>
 
-    <body>
+    <body style="background-color: #f1f1f1;">   <!--Inliine CSS : BG COLOR Added-->
 
         <div class="topnav" id="myTopnav">
             <a class="navbar-brand" href="{% url 'home' %}">Emergency Information Directory</a>

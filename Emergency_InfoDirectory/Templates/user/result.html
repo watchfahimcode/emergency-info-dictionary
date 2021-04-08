@@ -1,0 +1,157 @@
+{% extends 'user/base.html' %}
+
+{% block title %}
+    Result
+{% endblock %}
+{% block style %}
+    table, th, td {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding-left: 3px;
+    }
+{% endblock %}
+
+
+{% block content %}
+    <div style="overflow-x: auto;padding-left:15%; padding-right: 15%; padding-top: 10%; padding-bottom: 10%; padding-bottom: 10%; background-color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+        {% if results %}
+            <h1>Showing results:</h1>
+            <h3>[ {{ results_name }}] </h3>
+
+            {% if results_name == "District Administration" %}    <!-------------------special Table for shwowing district admin data-->
+                <table>
+                    <thead>
+                    <tr align="center">
+                        <th>Name</th>
+                        <th>Deputy Commissioner</th>
+                        <th>Contact No.</th>
+                        <th>District</th>
+                        <th>Division</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in results %}
+                        <tr>
+                            <td> {{data.name}} </td>
+                            <td> {{data.chairman}} </td>
+                            <td>{{"0"}}{{data.contact_no}} </td>
+                            <td> {{data.district}} </td>
+                            <td> {{data.division}} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            {% elif results_name == "Subdistrict Administration" %}    <!----------------special Table for shwowing subdistrict admin data-->
+                <table>
+                    <thead>
+                    <tr align="center">
+                        <th>Name</th>
+                        <th>UNO</th>
+                        <th>Contact No.</th>
+                        <th>Subdistrict</th>
+                        <th>District</th>
+                        <th>Division</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in results %}
+                        <tr>
+                            <td> {{data.name}} </td>
+                            <td> {{data.uno}} </td>
+                            <td>{{"0"}}{{data.contact_no}} </td>
+                            <td> {{data.subdistrict}} </td>
+                            <td> {{data.district}} </td>
+                            <td> {{data.division}} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% elif results_name == "Municipality" %}    <!----------------special Table for shwowing MUNICIPALITY data-->
+                <table>
+                    <thead>
+                    <tr align="center">
+                        <th>Name</th>
+                        <th>Mayor</th>
+                        <th>Contact No.</th>
+                        <th>Subdistrict</th>
+                        <th>District</th>
+                        <th>Division</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in results %}
+                        <tr>
+                            <td> {{data.name}} </td>
+                            <td> {{data.mayor}} </td>
+                            <td>{{"0"}}{{data.contact_no}} </td>
+                            <td> {{data.subdistrict}} </td>
+                            <td> {{data.district}} </td>
+                            <td> {{data.division}} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% elif results_name == "Union" %}    <!----------------special Table for shwowing UNION Council data-->
+                <table>
+                    <thead>
+                    <tr align="center">
+                        <th>Name</th>
+                        <th>Chairman</th>
+                        <th>Contact No.</th>
+                        <th>District</th>
+                        <th>Division</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in results %}
+                        <tr>
+                            <td> {{data.name}} </td>
+                            <td> {{data.chairman}} </td>
+                            <td>{{"0"}}{{data.contact_no}} </td>
+                            <td> {{data.district}} </td>
+                            <td> {{data.division}} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+            {% else %}      <!--------------Default Data Showing Table---------------->
+
+                <table>
+                    <thead>
+                        <tr align="center">
+                            <th>Name</th>
+                            <th>Address</th>
+                            <th>Contact No.</th>
+                            <th>Subdistict</th>
+                            <th>District</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for data in results %}
+                            <tr>
+                                <td> {{data.name}} </td>
+                                <td> {{data.address}} </td>
+                                <td>{{"0"}}{{data.contact_no}} </td>
+                                <td> {{data.subdistrict}} </td>
+                                <td> {{data.district}} </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% endif %}
+
+
+
+        {% else %}
+            <h1>Sorry! No data found...</h1>
+            <!--SAD Animation-->
+            <div class="tenor-gif-embed" data-postid="10800494" data-share-method="host" data-width="70%" data-aspect-ratio="1.0"><a href="https://tenor.com/view/crying-emoji-gif-10800494">Crying Emoji GIF</a> from <a href="https://tenor.com/search/crying-gifs">Crying GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+        {% endif %}
+    </div>
+
+{% endblock %}

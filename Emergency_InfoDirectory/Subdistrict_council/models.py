@@ -1,7 +1,7 @@
 from django.db import models
 
 # Create your models here.
-class Subdistrict_counil(models.Model):
+class Subdistrict_council(models.Model):
     id = models.IntegerField(primary_key=True, db_column='id')
     name = models.CharField(max_length=30, db_column='name')
     chairman= models.CharField(max_length=40, db_column='chairman')
