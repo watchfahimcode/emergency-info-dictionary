@@ -24,8 +24,6 @@ def profile(request):
             return render(request, 'user/profile.html',
                           { 'form': form,'error_fname':error_fname } )
 
-
-
         print(dict['lname'])
         print(dict['gender'])
         print(dict['division'])
@@ -35,6 +33,12 @@ def profile(request):
     userDetailsForm = UserDetailsForm()
 
     return render(request,'user/profile.html',{ 'form': userDetailsForm})
+
+
+@login_required()
+def profile_update(request):
+    return render(request,'user/profile_update.html')
+
 
 def register(request):
     if request.method == "POST":

@@ -1,0 +1,21 @@
+{% extends 'user/base.html'%}
+
+{% block title %}
+    Profile Update
+{% endblock %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+    {% load static %}
+
+    <img style="height: 40px; width: 40px;" class="rounded-circle"
+         src="{{ user.profile.profile_picture.url }}"
+         alt="{{ user.profile.profile_picture.url }}">
+
+    {{ user.first_name }}
+    {{ user.username }}
+
+
+
+{% endblock %}
