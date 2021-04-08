@@ -1,15 +1,66 @@
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm, UserDetailsForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
+from .forms import UserRegistrationForm,SearchForm
 from django.contrib.auth import get_user, authenticate, login
 
-@login_required()
-def home(request):
-    context = {
-        'content' : "This is home"
-    }
-    return render(request,'user/home.html',context)
+#importing data retrieving methods
+from bazar.views import showBazarInfo
+from Hotel.views import showHotelInfo
+from Doctor.views import showDoctorInfo
+from Police_station.views import showPoliceStationInfo
+from Hospital.views import showHospitalInfo
+from fire_station.views import showFireStationInfo
+from District_administration.views import showDistrictAdminInfo
+from Subdistrict_administration.views import showSubdistrictAdminInfo
+from Municipality.views import showMunicipalityInfo
+from Union_council.views import showUnionCouncilInfo
+
+@login_required()   #---Reserved for future use
+def home(request):     #home Search Bar
+    if request.method == "POST":
+        q_form = SearchForm(request.POST)
+        if q_form.is_valid():
+            dict = request.POST
+
+            if dict['catagory']=='bazar':
+                return render(request,'user/result.html',{'results':showBazarInfo(dict['district']),'results_name':"Bazar"})   #Bazar Information
+            if dict['catagory']=='hotel':
+                return render(request,'user/result.html',{'results':showHotelInfo(dict['district']),'results_name':"Hotel"})   #Hotel Information
+
+            #Emergency Info
+            if dict['catagory']=='doctor':
+                return render(request,'user/result.html',{'results':showDoctorInfo(dict['district']),'results_name':"Doctor"})  #Doctor Information
+            if dict['catagory']=='police':
+                return render(request,'user/result.html',{'results':showPoliceStationInfo(dict['district']),'results_name':"Police Station"})   #Police Information
+            if dict['catagory']=='fire_station':
+                return render(request,'user/result.html',{'results':showFireStationInfo(dict['district']),'results_name':"Fire Station"})     #Fire Station
+            if dict['catagory']=='hospital':
+                return render(request,'user/result.html',{'results':showHospitalInfo(dict['district']),'results_name':"Hospital"})    #Hospital
+
+            #Admin & Govt. Info
+            if dict['catagory']=='district_admin':
+                return render(request,'user/result.html',{'results':showDistrictAdminInfo(dict['district']),'results_name':"District Administration"})
+            if dict['catagory']=='subdistrict_admin':
+                return render(request,'user/result.html',{'results':showSubdistrictAdminInfo(dict['district']),'results_name':"Subdistrict Administration"})
+            #.....update result page
+            if dict['catagory']=='municipality':
+                return render(request,'user/result.html',{'results':showMunicipalityInfo(dict['district']),'results_name':"Municipality"})
+            if dict['catagory']=='union':
+                return render(request,'user/result.html',{'results':showUnionCouncilInfo(dict['district']),'results_name':"Union"})
+
+
+
+
+
+    else:
+        q_form = SearchForm
+        return render(request, 'user/home.html',{'search_forms':q_form})
+
+def result(request):        #result Page
+    return render(request,'user/result.html')
 
 @login_required
 def profile(request):

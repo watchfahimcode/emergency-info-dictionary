@@ -24,10 +24,10 @@ from django.conf .urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',user_views.home,name='home'),
+    path('result/',user_views.result,name='result'),
     path('profile/',user_views.profile,name='user-profile'),
     path('register/',user_views.register,name='user-registration'),
-    path('home/',user_views.home,name='home'),
-    path('',user_views.home,name='home'),
     path('login/',auth_views.LoginView.as_view(template_name='user/login.html'),name='login'),
     path('accounts/profile/',user_views.profile,name='user-profile'),
     path('accounts/profile/update/',user_views.profile_update,name='profile-update'),

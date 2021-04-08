@@ -1,7 +1,9 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 
     <head>
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         {% load static %} 
@@ -13,10 +15,14 @@
             {% block title %}
      
              {% endblock %}
-         </title>
+        </title>
+        <style>
+            {% block style %}
+            {% endblock %}
+        </style>
     </head>
 
-    <body>
+    <body style="background-color: #f1f1f1;">   <!--Inliine CSS : BG COLOR Added-->
 
         <div class="topnav" id="myTopnav">
             <a class="navbar-brand" href="{% url 'home' %}">Emergency Information Directory</a>
