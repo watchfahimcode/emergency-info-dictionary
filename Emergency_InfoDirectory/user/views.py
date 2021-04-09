@@ -5,6 +5,7 @@ from .forms import UserRegistrationForm, UserDetailsForm, UserUpdateForm, Profil
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm,SearchForm
 from django.contrib.auth import get_user, authenticate, login
+from .models import Profile
 
 #importing data retrieving methods
 from bazar.views import showBazarInfo
@@ -92,14 +93,31 @@ def profile(request):
 
 @login_required()
 def profile_update(request):
-    user_update_form = UserUpdateForm()
-    profile_upate_form = ProfileUpdateForm()
-    context = {
-        'user_update_form' : user_update_form,
-        'profile_update_form': profile_upate_form
+    if request.method == 'POST':
+        user_update_form = UserUpdateForm(request.POST, instance= request.user)
+        profile_update_form = ProfileUpdateForm(request.POST, request.FILES,
+                                               instance=request.user.profile)
 
-    }
-    return render(request,'user/profile_update.html',context)
+        if user_update_form.is_valid() and profile_update_form.is_valid():
+            user_update_form.save()
+            profile_update_form.save()
+
+            return redirect('user-profile')
+        else:
+            context = {
+                'user_update_form': user_update_form,
+                'profile_update_form': profile_update_form
+            }
+            return render(request, 'user/profile_update.html', context)
+    else:
+        user_update_form = UserUpdateForm(instance= request.user)
+        profile_update_form = ProfileUpdateForm()
+        context = {
+            'user_update_form' : user_update_form,
+            'profile_update_form': profile_update_form
+
+        }
+        return render(request,'user/profile_update.html',context)
 
 
 def register(request):
@@ -107,6 +125,8 @@ def register(request):
         registration_form = UserRegistrationForm(request.POST)
         if registration_form.is_valid():
             registration_form.save()
+            #profile = Profile(user=request.user)  #alteranate
+            #profile.save
 
             #autologin...
             username = registration_form.cleaned_data.get('username')
@@ -115,11 +135,15 @@ def register(request):
             login(request,new_user)
 
         return redirect('home')
+
+        #else:
+            #return redirect('home')
+
+
     else:
         registration_form = UserRegistrationForm
 
         context = {
-
             'form': registration_form
         }
         return render(request, 'user/register.html', context)
