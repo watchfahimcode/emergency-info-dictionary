@@ -9,25 +9,28 @@
 {% block content %}
     {% load static %}
 
-    <div>
-        <img style="height: 200px; width: 200px;" class="img-thumbnail img-responsive float-right"
-         src="{{ user.profile.profile_picture.url }}"
-         alt="{{ user.profile.profile_picture.url }}"><br>
-    </div>
+    <div  style="padding-left:33%; padding-right: 25%; padding-top: 10%; background-color: #ffffff;
+        padding-bottom: 10%; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);">
 
-    <br>
-    <div style="float: left">
-        <b>Username</b> - {{ user.username }}<br>
-        <b>First Name</b> - {{ user.first_name }}<br>
-        <b>Last Name</b> - {{ user.last_name }}<br>
+        <div>
+            <img style="height: 200px; width: 200px;" class="img-thumbnail img-responsive"
+             src="{{ user.profile.profile_picture.url }}"
+             alt="{{ user.profile.profile_picture.url }}"><br>
+        </div>
 
         <br>
-        <form action="{% url 'profile-update' %}">
-            <button class="btn btn-primary" type="submit">Update Profile</button>
-        </form>
+        <div>
+            <b>Username</b> - {{ user.username }}<br>
+            <b>First Name</b> - {{ user.first_name }}<br>
+            <b>Last Name</b> - {{ user.last_name }}<br>
 
+            <br>
+            <form action="{% url 'profile-update' %}">
+                <button class="btn btn-primary" type="submit">Update Profile</button>
+            </form>
+
+        </div>
     </div>
-
 
 
 
