@@ -12,9 +12,9 @@
 
 
 {% block content %}
-    <div style=" padding-right: 10%; padding-left: 10%;padding-bottom: 40%; padding-top: 5%; margin-bottom: 15%; background-color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
-        <div style="padding-bottom: 30%">
-            <h1>Our Story</h1>
+    <div style=" padding-right: 10%; padding-left: 10%;padding-bottom: 52%; padding-top: 5%; margin-bottom: 15%; background-color: lightblue; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"class="rounded">
+        <div style="padding-bottom: 10%">
+            <h2>Our Story</h2>
             <hr>
             <p>
                 Emergency Information System is a information bank consist of necessary information such as Police, Fire, Hospital etc.
@@ -28,7 +28,7 @@
         <!-- Moshiur Tonmoy Details-->
         <div style="float:left; width: 33%;align-content: center">
             <p>
-                <img style="height: 10px; width: 100px;" class="rounded-circle hover-added-in-style.css"
+                <img style="height: 100px; width: 100px;" class="rounded"
                      src="{{ user.profile.profile_picture.url }}"
                      alt="<img: Tonmoy>"><br>       <!-- Moshiur Tonmoy Image-->
                 Moshiur Tonmoy<br>
@@ -50,7 +50,7 @@
         <!-- Fahim Rahman Details-->
         <div style="float: left;width: 33%">
             <p>
-                <img style="height: 10px; width: 100px;" class="rounded-circle hover-added-in-style.css"
+                <img style="height: 100px; width: 100px;" class="rounded"
                      src="{{ user.profile.profile_picture.url }}"
                      alt="<img: Fahim>"><br> <!-- Fahim Ima-->
                 Md Fahim Rahman<br>
@@ -70,8 +70,10 @@
         <!-- Foysal Details-->
         <div style="float: left;width: 33%">
             <p>
-                <img style="height: 10px; width: 100px;" class="rounded-circle hover-added-in-style.css"
-                     src="{{ user.profile.profile_picture.url }}"
+                <img style="height: 150px; width: 150px;" class="rounded"
+{#                     src="{{ user.profile.profile_picture.url }}"#}
+                      src="/media/profile_pictures/user-3.jpg"
+
                      alt="<img: Foysal>"><br>
                 Md Mahirbin Foysal<br>
                 &#127463;&#127465;<br>

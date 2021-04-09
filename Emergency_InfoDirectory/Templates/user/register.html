@@ -16,10 +16,10 @@
         }
     </style>
 
-    <div class="container register-form" style="padding-right: 20%; padding-top: 5%;margin-top: 5%; margin-bottom: 15%; background-color: #ffffff"> <!-- margin added -->
+    <div class=" rounded container register-form" style="padding-right: 20%;padding-left:20%;  padding-top: 5%;margin-top: 5%; margin-bottom: 15%; background-color:lightblue"> <!-- margin added -->
         <form method="POST">
-            <legend>Sign Up Now!<br>
-                Become a Member and Help the Commmunity!</legend>
+            <legend><h4>Sign Up Now!</h4>
+                <h6>Become a Member and Help the Commmunity!</h6></legend>
             {% csrf_token %}
             <fieldset class="form-group">
                 {{ form|crispy }}
