@@ -54,6 +54,10 @@ class UserDetailsForm(forms.Form):
 
 
 class UserUpdateForm(forms.ModelForm):
+    username = forms.CharField(max_length=20, required=False)
+    first_name = forms.CharField(max_length=30, required=False)
+    last_name = forms.CharField(max_length=30, required=False)
+    email = forms.CharField(max_length=30, required=False)
     class Meta:
         model= User
         fields=['username',
@@ -64,6 +68,7 @@ class UserUpdateForm(forms.ModelForm):
 
 
 class ProfileUpdateForm(forms.ModelForm):
+    profile_picture = forms.ImageField(required=False)
     class Meta:
         model = Profile
         fields=[

@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'user',
+    'user.apps.UserConfig',
     'crispy_forms',
     'bazar.apps.BazarConfig',
     'fire_station.apps.FireStationConfig',

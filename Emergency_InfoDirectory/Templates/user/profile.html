@@ -9,12 +9,16 @@
 {% block content %}
     {% load static %}
 
-    <img style="height: 40px; width: 40px;" class="rounded-circle"
+    <img style="height: 200px; width: 200px;" class="img-thumbnail img-responsive float-right"
          src="{{ user.profile.profile_picture.url }}"
-         alt="{{ user.profile.profile_picture.url }}">
+         alt="{{ user.profile.profile_picture.url }}"><br>
+    <br>
 
-    {{ user.first_name }}
-    {{ user.username }}
+    <div style="float: left">
+        <b>Username</b> - {{ user.username }}<br>
+        <b>First Name</b> - {{ user.first_name }}<br>
+        <b>Last Name</b> - {{ user.last_name }}<br>
+    </div>
 
 
 
