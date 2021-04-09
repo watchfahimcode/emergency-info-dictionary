@@ -1,10 +1,91 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'user/base.html'%}
+{% block head %}
+{% endblock %}
 
-</body>
-</html>
+{% block title %}
+    About
+{% endblock %}
+
+{% block style %}
+    <!-- Styles goes here..........-->
+{% endblock %}
+
+
+{% block content %}
+    <div style=" padding-right: 10%; padding-left: 10%;padding-bottom: 40%; padding-top: 5%; margin-bottom: 15%; background-color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+        <div style="padding-bottom: 30%">
+            <h1>Our Story</h1>
+            <hr>
+            <p>
+                Emergency Information System is a information bank consist of necessary information such as Police, Fire, Hospital etc.
+                <!-- Need more updated details-->
+            </p>
+        </div>
+        <div style="background-color: #333;padding: 10px;color: white; margin-bottom: 5%">
+            <h5 align="center">Meet the Developers</h5>
+        </div>
+
+        <!-- Moshiur Tonmoy Details-->
+        <div style="float:left; width: 33%;align-content: center">
+            <p>
+                <img style="height: 10px; width: 100px;" class="rounded-circle hover-added-in-style.css"
+                     src="{{ user.profile.profile_picture.url }}"
+                     alt="<img: Tonmoy>"><br>       <!-- Moshiur Tonmoy Image-->
+                Moshiur Tonmoy<br>
+                &#127463;&#127465;<br> <!-- BD Flag Emoji-->
+                <a class="email-now-link" style="text-decoration: none" href="mailto:18201027@uap-bd.edu">Email Now</a><br>
+
+                <!-- Social Icon Goes Here -->
+            <div style="float:left;">
+                    <a href="#" style="text-decoration: none; color: white" class="fa fa-facebook"></a>
+                    <a href="#" style="text-decoration: none; color: white" class="fa fa-twitter"></a>
+                    <a href="#" style="text-decoration: none; color: white" class="fa fa-google"></a>
+                    <a href="#" style="text-decoration: none; color: white" class="fa fa-linkedin"></a>
+                    <a href="#" style="text-decoration: none; color: white" class="fa fa-youtube"></a>
+            </div>
+
+            </p>
+        </div>
+
+        <!-- Fahim Rahman Details-->
+        <div style="float: left;width: 33%">
+            <p>
+                <img style="height: 10px; width: 100px;" class="rounded-circle hover-added-in-style.css"
+                     src="{{ user.profile.profile_picture.url }}"
+                     alt="<img: Fahim>"><br> <!-- Fahim Ima-->
+                Md Fahim Rahman<br>
+                &#127463;&#127465;<br>  <!-- BD Flag Emoji-->
+                <a class="email-now-link" style="text-decoration: none" href="mailto:182010xx@uap-bd.edu">Email Now</a><br>
+            <div style="float:left;">
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-facebook"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-twitter"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-google"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-linkedin"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-youtube"></a>
+            </div>
+
+            </p>
+        </div>
+
+        <!-- Foysal Details-->
+        <div style="float: left;width: 33%">
+            <p>
+                <img style="height: 10px; width: 100px;" class="rounded-circle hover-added-in-style.css"
+                     src="{{ user.profile.profile_picture.url }}"
+                     alt="<img: Foysal>"><br>
+                Md Mahirbin Foysal<br>
+                &#127463;&#127465;<br>
+                <a class="email-now-link" style="text-decoration: none" href="mailto:182010xx@uap-bd.edu">Email Now</a><br>
+            <div style="float:left;">
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-facebook"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-twitter"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-google"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-linkedin"></a>
+                <a href="#" style="text-decoration: none; color: white" class="fa fa-youtube"></a>
+            </div>
+            </p>
+        </div>
+
+    </div>
+
+{% endblock %}

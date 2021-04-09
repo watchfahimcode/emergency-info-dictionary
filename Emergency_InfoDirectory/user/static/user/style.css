@@ -125,3 +125,67 @@ body {margin:0;font-family:Arial}
       border: 1px solid #ccc;
     }
   }
+
+
+ /*Social Button CSS*/
+.fa {
+  padding: 5px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  text-decoration: none;
+  margin: 1px 0px;
+  border-radius: 50%;
+  opacity: 0.5;
+  background: #333;
+}
+
+.fa:hover {
+  opacity: 1;
+  padding: 6px;
+  font-size: 25px;
+  width: 35px;
+  height: 35px;
+}
+
+.fa-facebook:hover {
+  background: #3B5998;
+  color: white;
+}
+
+.fa-twitter:hover {
+  background: #55ACEE;
+  color: white;
+}
+
+.fa-google:hover {
+  background: #dd4b39;
+  color: white;
+}
+
+.fa-linkedin:hover {
+  background: #007bb5;
+  color: white;
+}
+
+.fa-youtube:hover {
+  background: #bb0000;
+  color: white;
+}
+/*Email now link */
+.email-now-link{
+  color: #333;
+  opacity: .8;
+}
+.email-now-link:hover{
+  opacity: 1;
+  color: #333;
+  font-size: large;
+}
+
+
+/*meet the dev img hover*/
+.hover-added-in-style.css:hover{
+  opacity: 0.9;
+}

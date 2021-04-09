@@ -52,17 +52,21 @@ def home(request):     #home Search Bar
                 return render(request,'user/result.html',{'results':showUnionCouncilInfo(dict['district']),'results_name':"Union"})
 
 
-
-
-
     else:
         q_form = SearchForm
         return render(request, 'user/home.html',{'search_forms':q_form})
 
+def about(request):        #about Page
+    return render(request,'user/about.html')
+
+def contact(request):        #contact Page
+    return render(request,'user/contact_us.html')
+
+@login_required()
 def result(request):        #result Page
     return render(request,'user/result.html')
 
-@login_required
+@login_required()
 def profile(request):
     if(request.method == 'POST'):
         form=UserDetailsForm(request.POST)

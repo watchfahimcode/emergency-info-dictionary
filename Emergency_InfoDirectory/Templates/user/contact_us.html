@@ -1,10 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends 'user/base.html' %}
 
-</body>
-</html>
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Contact
+{% endblock %}
+{% block style %}
+    <!-- Style goes here..........-->
+
+{% endblock %}
+
+{% block content %}
+
+
+    <div style=" padding-right: 10%; padding-left: 10%;padding-bottom: 50%; padding-top: 5%; background-color: #ffffff; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)">
+        <h1>Contact Us</h1>
+        <hr>
+        <div style="float: left;width: 49%;padding-top: 10%">
+            <address>
+                    Visit us at:<br>
+                    <h5><b>EID</b></h5>
+                <i>
+                    74/A Green Rd, Dhaka 1205<br>
+                    <a href="tel:+88019514607##">+88019514607## </a>(9am - 8pm Only)<br>
+                    <a href="mailto:demo@example.com">contact@eid.com</a>
+                </i>
+            </address>
+        </div>
+        <div style="float: right; width: 49%">  <!-- Google Map -->
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.79196180381!2d90.38716981546078!3d23.754796984587195!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3755b8b0a98eaf3b%3A0xc692432124fcc478!2sUniversity%20of%20Asia%20Pacific%20-%20UAP!5e0!3m2!1sen!2sbd!4v1617911372657!5m2!1sen!2sbd" width="350" height="250" style="border:0;" allowfullscreen="true" loading="lazy"></iframe>
+        </div>
+    </div>
+
+
+{% endblock %}
