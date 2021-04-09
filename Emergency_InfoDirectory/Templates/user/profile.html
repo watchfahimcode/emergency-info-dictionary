@@ -4,8 +4,32 @@
     Profile
 {% endblock %}
 
+{% load crispy_forms_tags %}
+
 {% block content %}
     {% load static %}
 
-    Name- {{ name }}
+    <div>
+        <img style="height: 200px; width: 200px;" class="img-thumbnail img-responsive float-right"
+         src="{{ user.profile.profile_picture.url }}"
+         alt="{{ user.profile.profile_picture.url }}"><br>
+    </div>
+
+    <br>
+    <div style="float: left">
+        <b>Username</b> - {{ user.username }}<br>
+        <b>First Name</b> - {{ user.first_name }}<br>
+        <b>Last Name</b> - {{ user.last_name }}<br>
+
+        <br>
+        <form action="{% url 'profile-update' %}">
+            <button class="btn btn-primary" type="submit">Update Profile</button>
+        </form>
+
+    </div>
+
+
+
+
+
 {% endblock %}
