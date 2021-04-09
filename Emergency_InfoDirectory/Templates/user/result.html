@@ -1,4 +1,5 @@
 {% extends 'user/base.html' %}
+{% load crispy_forms_tags %}        <!-- Print Button & Search Agasin Button Added -->
 
 {% block title %}
     Result
@@ -152,6 +153,15 @@
             <!--SAD Animation-->
             <div class="tenor-gif-embed" data-postid="10800494" data-share-method="host" data-width="70%" data-aspect-ratio="1.0"><a href="https://tenor.com/view/crying-emoji-gif-10800494">Crying Emoji GIF</a> from <a href="https://tenor.com/search/crying-gifs">Crying GIFs</a></div><script type="text/javascript" async src="https://tenor.com/embed.js"></script>
         {% endif %}
+
+        <br>
+        <div>           <!--  Print & Search Again Button Added-->
+            <form>
+                {{ crispy }}
+                <button onClick="window.print()" class="submit form-group btn btn-outline-info">Print</button>
+                <button onClick="window.location.href='home/'" class="submit form-group btn btn-outline-info">Search Again</button>
+            </form>
+        </div>
     </div>
 
 {% endblock %}
