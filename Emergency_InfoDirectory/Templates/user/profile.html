@@ -9,14 +9,14 @@
 {% block content %}
     {% load static %}
 
-    <div>
+    <div style="padding-left: 20%;padding-right: 45%;padding-top: 0%;padding-bottom: 0%;">
         <img style="height: 200px; width: 200px;" class="img-thumbnail img-responsive float-right"
          src="{{ user.profile.profile_picture.url }}"
          alt="{{ user.profile.profile_picture.url }}"><br>
     </div>
 
     <br>
-    <div style="float: left">
+    <div style="padding-left: 23%;padding-right: 45%;padding-top: 5%;padding-bottom: 5%;">
         <b>Username</b> - {{ user.username }}<br>
         <b>First Name</b> - {{ user.first_name }}<br>
         <b>Last Name</b> - {{ user.last_name }}<br>
