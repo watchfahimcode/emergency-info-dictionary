@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserRegistrationForm,SearchForm
 from django.contrib.auth import get_user, authenticate, login
 from .models import Profile
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 
 #importing data retrieving methods
 from bazar.views import showBazarInfo
@@ -135,10 +138,21 @@ def register(request):
             new_user = authenticate(username=username,password=password)
             login(request,new_user)
 
-        return redirect('home')
 
-        #else:
-            #return redirect('home')
+
+
+        #sending welcoming  mail
+        subject='welcome to our project'
+        body=render_to_string('user/intro_email.html')
+        send_mail(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,
+            [new_user.email]
+
+        )
+        #extra line added
+        return redirect('home')
 
 
     else:
