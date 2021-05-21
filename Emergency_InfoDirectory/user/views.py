@@ -93,6 +93,7 @@ def profile(request):
 
 @login_required()
 def profile_update(request):
+
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance= request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES,
