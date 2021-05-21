@@ -14,15 +14,38 @@
         <h5>Emergency Information Dictionary</h5>
         <hr>
         <br>
-        <form method="POST" id=search-form>
+        <form method="POST" id=search-form subdistrict-url="{% url 'ajax_load_subdistrict' %}">
             {% csrf_token %}
             <fieldset class="form-group">
                 {{ search_forms | crispy}}
+                {{ location_forms | crispy}}
             </fieldset>
             <button class="submit form-group btn btn-outline-info">
                 Search
             </button>
         </form>
+
+        <!-- AJAX for filtering Subdistricts-->
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script>
+            $("#id_district").change(function () {
+                var url = $("#search-form").attr("subdistrict-url");  // get the url of the `load_cities` view
+                var districtId = $(this).val();  // get the selected country ID from the HTML input
+
+                $.ajax({                       // initialize an AJAX request
+                    url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)
+                    data: {
+                        'district': districtId       // add the country id to the GET parameters
+                    },
+                    success: function (data) {   // `data` is the return of the `load_cities` view function
+                        $("#id_subdistrict").html(data);  // replace the contents of the city input with the data that came from the server
+                    }
+                });
+
+            });
+        </script>
+
+
     </div>
 
 {% endblock %}
