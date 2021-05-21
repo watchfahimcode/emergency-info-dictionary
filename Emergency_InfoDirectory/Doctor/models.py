@@ -13,3 +13,8 @@ class Doctor(models.Model):
     subdistrict = models.CharField(max_length=30, db_column='subdistrict')
     district = models.CharField(max_length=30, db_column='district')
     division = models.CharField(max_length=15, db_column='division')
+
+    def __str__(self):
+        return self.name+","+self.speciality+","+self.subdistrict+","+self.district
+
+

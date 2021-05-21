@@ -10,3 +10,28 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+#new Model for Division
+class Division(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+#new Model for District
+class District(models.Model):
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
+
+#new Model for Subdistrict
+class Subdistrict(models.Model):
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete= models.CASCADE)
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

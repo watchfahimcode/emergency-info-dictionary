@@ -16,7 +16,11 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/venv" />
     </content>
+<<<<<<< HEAD
     <orderEntry type="jdk" jdkName="Python 3.7" jdkType="Python SDK" />
+=======
+    <orderEntry type="jdk" jdkName="Python 3.10 (Emergency_InfoDirectory) (3)" jdkType="Python SDK" />
+>>>>>>> 111ce1a61a6d885490a63cdd7faa84e6e871709f
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Django Lib" level="project" />
   </component>
@@ -31,5 +35,8 @@
         <option value="$MODULE_DIR$/venv/Lib/site-packages/django/forms/templates" />
       </list>
     </option>
+  </component>
+  <component name="TestRunnerService">
+    <option name="PROJECT_TEST_RUNNER" value="pytest" />
   </component>
 </module>
