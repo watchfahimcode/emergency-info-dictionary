@@ -35,3 +35,13 @@ class Subdistrict(models.Model):
 
     def __str__(self):
         return self.name
+
+class Union(models.Model):
+    division = models.ForeignKey(Division, on_delete=models.CASCADE)
+    district = models.ForeignKey(District, on_delete= models.CASCADE)
+    subdistrict = models.ForeignKey(Subdistrict, on_delete= models.CASCADE)
+
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name

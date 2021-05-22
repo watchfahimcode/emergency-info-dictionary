@@ -4,7 +4,5 @@ from .models import Hotel
 
 
 # Create your views here.
-def showHotelInfo(inputDistrict=""):
-    if inputDistrict=="":
-        return Hotel.objects.all()
-    return Hotel.objects.filter(district=inputDistrict)
+def showHotelInfo(inputDistrict="",inputSubdistrict=""):
+    return Hotel.objects.filter(district=inputDistrict,subdistrict=inputSubdistrict)

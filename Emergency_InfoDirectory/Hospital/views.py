@@ -4,7 +4,7 @@ from .models import Hospital
 
 
 # Create your views here.
-def showHospitalInfo(inputDistrict=""):
+def showHospitalInfo(inputDistrict="",inputSubdistrict=""):
     if inputDistrict=="":
         return Hospital.objects.all()
-    return Hospital.objects.filter(district=inputDistrict)
+    return Hospital.objects.filter(district=inputDistrict,subdistrict=inputSubdistrict)
