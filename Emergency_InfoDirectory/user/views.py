@@ -3,9 +3,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from .forms import UserRegistrationForm, UserDetailsForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
-from .forms import UserRegistrationForm,SearchForm
+from .forms import UserRegistrationForm,SearchForm, LocationForm
 from django.contrib.auth import get_user, authenticate, login
 from .models import Profile
+from django.core.mail import send_mail
+from django.template.loader import render_to_string
+from django.conf import settings
 
 #importing data retrieving methods
 from bazar.views import showBazarInfo
@@ -16,46 +19,59 @@ from Hospital.views import showHospitalInfo
 from fire_station.views import showFireStationInfo
 from District_administration.views import showDistrictAdminInfo
 from Subdistrict_administration.views import showSubdistrictAdminInfo
-from Municipality.views import showMunicipalityInfo
 from Union_council.views import showUnionCouncilInfo
+from user.models import District,Subdistrict,Union
+
+def load_subdistrict(request):                       #_________________Function for AJAX to fetch Subdistricts
+    district_id = request.GET.get('district')
+    subdistricts = Subdistrict.objects.filter(district_id=district_id).order_by('name')
+    return render(request, 'user/subdistrict_list.html', {'subdistricts': subdistricts})
+
 
 @login_required()   #---Reserved for future use
 def home(request):     #home Search Bar
     if request.method == "POST":
-        q_form = SearchForm(request.POST)
-        if q_form.is_valid():
-            dict = request.POST
+        p_form = SearchForm(request.POST)
+        q_form = LocationForm(request.POST, instance=request.user)
 
-            if dict['catagory']=='bazar':
-                return render(request,'user/result.html',{'results':showBazarInfo(dict['district']),'results_name':"Bazar"})   #Bazar Information
+        if p_form.is_valid():
+            dict = request.POST
+            catagory = dict['catagory']
+            district = District.objects.get(id=dict['district'])
+            subdistrict = dict['subdistrict']
+
+            if catagory=='bazar':
+                return render(request,'user/result.html',{'results':showBazarInfo(district,subdistrict),'results_name':"Bazar"})   #Bazar Information
+
             if dict['catagory']=='hotel':
-                return render(request,'user/result.html',{'results':showHotelInfo(dict['district']),'results_name':"Hotel"})   #Hotel Information
+                return render(request,'user/result.html',{'results':showHotelInfo(district,subdistrict),'results_name':"Hotel"})   #Hotel Information
 
             #Emergency Info
             if dict['catagory']=='doctor':
-                return render(request,'user/result.html',{'results':showDoctorInfo(dict['district']),'results_name':"Doctor"})  #Doctor Information
+                return render(request,'user/result.html',{'results':showDoctorInfo(district,subdistrict),'results_name':"Doctor"})  #Doctor Information
             if dict['catagory']=='police':
-                return render(request,'user/result.html',{'results':showPoliceStationInfo(dict['district']),'results_name':"Police Station"})   #Police Information
+                return render(request,'user/result.html',{'results':showPoliceStationInfo(district,subdistrict),'results_name':"Police Station"})   #Police Information
             if dict['catagory']=='fire_station':
-                return render(request,'user/result.html',{'results':showFireStationInfo(dict['district']),'results_name':"Fire Station"})     #Fire Station
+                return render(request,'user/result.html',{'results':showFireStationInfo(district,subdistrict),'results_name':"Fire Station"})     #Fire Station
             if dict['catagory']=='hospital':
-                return render(request,'user/result.html',{'results':showHospitalInfo(dict['district']),'results_name':"Hospital"})    #Hospital
+                return render(request,'user/result.html',{'results':showHospitalInfo(district,subdistrict),'results_name':"Hospital"})    #Hospital
 
             #Admin & Govt. Info
             if dict['catagory']=='district_admin':
-                return render(request,'user/result.html',{'results':showDistrictAdminInfo(dict['district']),'results_name':"District Administration"})
+                return render(request,'user/result.html',{'results':showDistrictAdminInfo(district),'results_name':"District Administration"})
             if dict['catagory']=='subdistrict_admin':
-                return render(request,'user/result.html',{'results':showSubdistrictAdminInfo(dict['district']),'results_name':"Subdistrict Administration"})
+                return render(request,'user/result.html',{'results':showSubdistrictAdminInfo(district,subdistrict),'results_name':"Subdistrict Administration"})
             #.....update result page
-            if dict['catagory']=='municipality':
-                return render(request,'user/result.html',{'results':showMunicipalityInfo(dict['district']),'results_name':"Municipality"})
+            # if dict['catagory']=='municipality':
+            #     return render(request,'user/result.html',{'results':showMunicipalityInfo(district,subdistrict),'results_name':"Municipality"})
             if dict['catagory']=='union':
-                return render(request,'user/result.html',{'results':showUnionCouncilInfo(dict['district']),'results_name':"Union"})
+                return render(request,'user/result.html',{'results':showUnionCouncilInfo(district,subdistrict),'results_name':"Union"})
 
 
     else:
-        q_form = SearchForm
-        return render(request, 'user/home.html',{'search_forms':q_form})
+        p_form = SearchForm
+        q_form = LocationForm
+        return render(request, 'user/home.html',{'search_forms':p_form, 'location_forms':q_form})
 
 def about(request):        #about Page
     return render(request,'user/about.html')
@@ -93,6 +109,7 @@ def profile(request):
 
 @login_required()
 def profile_update(request):
+
     if request.method == 'POST':
         user_update_form = UserUpdateForm(request.POST, instance= request.user)
         profile_update_form = ProfileUpdateForm(request.POST, request.FILES,
@@ -134,10 +151,31 @@ def register(request):
             new_user = authenticate(username=username,password=password)
             login(request,new_user)
 
-        return redirect('home')
+            # sending welcoming  mail
+            subject = 'welcome to our project'
+            body = render_to_string('user/intro_email.html')
+            send_mail(
+                subject,
+                body,
+                settings.EMAIL_HOST_USER,
+                [new_user.email]
+            )
 
-        #else:
-            #return redirect('home')
+
+
+
+        #sending welcoming  mail
+        subject='welcome to our project'
+        body=render_to_string('user/intro_email.html')
+        send_mail(
+            subject,
+            body,
+            settings.EMAIL_HOST_USER,
+            [new_user.email]
+
+        )
+        #extra line added
+        return redirect('home')
 
 
     else:
@@ -147,5 +185,6 @@ def register(request):
             'form': registration_form
         }
         return render(request, 'user/register.html', context)
+
 
 

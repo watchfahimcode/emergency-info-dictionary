@@ -4,7 +4,5 @@ from .models import FireStation
 
 
 # Create your views here.
-def showFireStationInfo(inputDistrcit=""):
-    if inputDistrcit=="":
-        return FireStation.objects.all()
-    return FireStation.objects.filter(district=inputDistrcit)
+def showFireStationInfo(inputDistrcit="",inputSubdistrict=""):
+    return FireStation.objects.filter(district=inputDistrcit,subdistrict=inputSubdistrict)

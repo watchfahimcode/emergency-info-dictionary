@@ -4,7 +4,5 @@ from .models import Doctor
 
 
 # Create your views here.
-def showDoctorInfo(inputDistrict=""):
-    if inputDistrict=="":
-        return Doctor.objects.all()
-    return Doctor.objects.filter(district=inputDistrict)
+def showDoctorInfo(inputDistrict="",inputSubdistrict=""):
+    return Doctor.objects.filter(district=inputDistrict,subdistrict=inputSubdistrict)

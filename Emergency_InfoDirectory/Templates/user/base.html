@@ -25,14 +25,18 @@
         </style>
     </head>
 
-    <body style="background-color:lightslategray;">   <!--Inliine CSS : BG COLOR Added-->
+
+    <body style="background-color:darkslategray;">   <!--Inliine CSS : BG COLOR Added-->
+
+    <body style="background-color: #249b6b;">   <!--Inliine CSS : BG COLOR Added-->
+
 
         <div class="topnav" id="myTopnav">
             <a class="navbar-brand" href="{% url 'home' %}">Emergency Information Directory</a>
             <div class="topnav-right" style="float: right;padding-right: 5%">
                 <a href="{% url 'home' %}">Home</a>
                 <a href="{% url 'about' %}">About</a>
-                <a href="{% url 'contact' %}">Contact</a>
+                <a href="{% url 'contact' %}">Contact Us</a>
             {% if user.is_authenticated %}
                 <a href="{% url 'user-profile' %}">Profile</a>
                 <a href="{% url 'logout' %}">Log Out</a>

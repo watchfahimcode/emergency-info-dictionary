@@ -9,3 +9,6 @@ class Bazar(models.Model):
     subdistrict = models.CharField(max_length=50,db_column='Subdistrict')
     district = models.CharField(max_length=50,db_column='District')
     division = models.CharField(max_length=50,db_column='Division')
+
+    def __str__(self):
+        return self.name+","+self.subdistrict+","+self.district

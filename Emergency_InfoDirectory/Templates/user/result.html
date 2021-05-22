@@ -16,7 +16,7 @@
 
 
 {% block content %}
-    <div style="overflow-x: auto;padding-left:12%; padding-right: 20%; padding-top: 3%; padding-bottom: 0%;  background-color: lightblue; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"class="rounded">
+    <div style="overflow-x: auto;padding-left:12%; padding-right: 20%; padding-top: 3%; padding-bottom: 0%;  background-color: #B4D3b2; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)"class="rounded">
         {% if results %}
             <h1>Showing results:</h1>
             <h3>[ {{ results_name }}] </h3>
@@ -115,6 +115,37 @@
                             <td>{{"0"}}{{data.contact_no}} </td>
                             <td> {{data.district}} </td>
                             <td> {{data.division}} </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+
+{% elif results_name == "Doctor" %}    <!----------------special Table for shwowing Doctor data-->
+                <table>
+                    <thead>
+                    <tr align="center">
+                        <th>Name</th>
+                        <th>Speciality</th>
+                        <th>Chamber</th>
+                        <th>Consultation Hour</th>
+                        <th>Fee</th>
+                        <th>Contact No.</th>
+                        <th>Subdistrict</th>
+                        <th>District</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for data in results %}
+                        <tr>
+                            <td> {{data.name}} </td>
+                            <td> {{data.speciality}} </td>
+                            <td> {{data.chamber_name}} </td>
+                            <td> {{data.consultation_hour}} </td>
+                            <td> {{data.consultation_fee}} </td>
+                            <td>{{"0"}}{{data.contact_no}} </td>
+                            <td> {{data.subdistrict}} </td>
+                            <td> {{data.district}} </td>
+
                         </tr>
                     {% endfor %}
                     </tbody>

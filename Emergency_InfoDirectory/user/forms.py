@@ -1,10 +1,34 @@
 from django.contrib.auth.forms import UserCreationForm, forms
 from django.contrib.auth.models import User
 from .models import Profile
+from .models import Subdistrict
+from .models import District
+from .models import Union
+
+
+class LocationForm(forms.ModelForm):          #Homepage_search Form
+    class Meta:
+        model = Union
+        fields = ('district', 'subdistrict')
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['subdistrict'].queryset = Subdistrict.objects.none()
+
+        if 'district' in self.data:
+            try:
+                district_id = int(self.data.get('district'))
+                self.fields['subdistrict'].queryset = Subdistrict.objects.filter(district_id=district_id).order_by('name')
+            except (ValueError, TypeError):
+                pass  # invalid input from the client; ignore and fallback to empty City queryset
+        elif self.instance.pk:
+            self.fields['subdistrict'].queryset = self.instance.district.subdistrict_set.order_by('name')
+
+
 
 class SearchForm(forms.Form):       #Homepage_search Form
     CATAGORY_CHOICES= [
-        ('','...'),
+        ('','---------'),
         ('fire_station', 'Fire Station'),
         ('police', 'Police'),
         ('doctor', 'Doctor'),
@@ -20,7 +44,7 @@ class SearchForm(forms.Form):       #Homepage_search Form
         ('union', 'Union Council'),
     ]
     DISTRICT_CHOICES= [
-        ('','...'),
+        ('','---------'),
         ('Kurigram','Kurigram'),
         ('Rangpur', 'Rangpur'),
         ('Dinajpur', 'Dinajpur'),
@@ -30,7 +54,7 @@ class SearchForm(forms.Form):       #Homepage_search Form
         ('Panchagarh', 'Panchagarh'),
     ]
     catagory = forms.CharField(label='Choose a Catagory...', widget=forms.Select(choices=CATAGORY_CHOICES))
-    district = forms.CharField(label='Choose a District...', widget=forms.Select(choices=DISTRICT_CHOICES),required=False)
+    #district = forms.CharField(label='Choose a District...', widget=forms.Select(choices=DISTRICT_CHOICES),required=False)
 
 class UserRegistrationForm(UserCreationForm):
     email =forms.EmailField()
