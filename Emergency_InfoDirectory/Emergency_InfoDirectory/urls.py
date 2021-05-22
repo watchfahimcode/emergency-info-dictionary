@@ -35,7 +35,9 @@ urlpatterns = [
     path('accounts/profile/',user_views.profile,name='user-profile'),
     path('accounts/profile/update/',user_views.profile_update,name='profile-update'),
     path('logout/',auth_views.LogoutView.as_view(template_name='user/logout.html'),name='logout'),
-    path('ajax/load-cities/', user_views.load_subdistrict, name='ajax_load_subdistrict')
+    path('ajax/load-cities/', user_views.load_subdistrict, name='ajax_load_subdistrict'),
+    path('password-change/',auth_views.PasswordChangeView.as_view(template_name='user/password_change.html'),name='password_change'),
+    path('password-change/done/',auth_views.PasswordChangeDoneView.as_view(template_name='user/password_change_done.html'),name='password_change_done'),
 
 ]
 
