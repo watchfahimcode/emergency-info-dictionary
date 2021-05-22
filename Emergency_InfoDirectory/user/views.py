@@ -151,7 +151,6 @@ def register(request):
             new_user = authenticate(username=username,password=password)
             login(request,new_user)
 
-<<<<<<< HEAD
             # sending welcoming  mail
             subject = 'welcome to our project'
             body = render_to_string('user/intro_email.html')
@@ -162,7 +161,6 @@ def register(request):
                 [new_user.email]
             )
 
-=======
 
 
 
@@ -177,7 +175,6 @@ def register(request):
 
         )
         #extra line added
->>>>>>> cea24db466fbf56a3a2cc1b39627a5bfd6c103af
         return redirect('home')
 
 
